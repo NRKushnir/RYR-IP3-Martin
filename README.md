@@ -1,13 +1,21 @@
 # RYR-IP3-Martin
 
-These scripts were designed to process data exported from the AIVIA software (DRVISION Technologies), which is used to count protein structures within our 2D images.
+This script is designed to process data exported from the AIVIA software (DRVISION Technologies), which is used to count protein structures within 2D images.
 
-There are two scripts: one for batch processing, which considers all data sets, and one for individual data sets, which is arbitrary and applies to only a single file. The individual data set used here was chosen solely for example purposes.
+It is a batch processing script made to optimize processing time for bulk datasets. For this script, it handles two data sets, each divided into two subsets: WT and KO. Each subset includes three replicates, with three data categories per replicate (free, cluster, and total).
 
-In the individual data set script, the initial input data is processed by converting pixels to microns using the provided pixel-to-micron conversion specific to our images. This conversion factor must be updated if applied to different data sets. The processed data is then converted into a .csv file and used to generate ROIs (regions of interest) that divide our 1024x1024 image into a 5x5 grid, creating 25 equal-sized segments.
+The script processes the initial input data by extracting specific columns from the original .csv file to create a new file. The targeted columns and labels may vary across datasets and should be adjusted accordingly. The extracted values, originally in pixel format, are converted to microns using a provided pixel-to-micron conversion factor specific to the images. This factor must be updated when applied to different datasets. The processed data is then used to generate ROIs (regions of interest) based on the x,y coordinates of each point. Each point is assigned to an ROI depending on its location within the image, which is divided into a 5x5 grid of 25 equal-sized segments. 
 
-The resulting .csv file can then be used in the batch processing script, which performs a series of steps to isolate the necessary columns (x and y centroids and the outlined area of each individual structure) and processes this data to generate a file. This file highlights the area of each ROI, the number of structures within each ROI, and confirmation of whether an area is empty. Note that the .csv file is optional, as the batch processing script includes functionality to generate a data sheet directly from the original export. However, the targeted columns and labels may vary for different data sets and should be adjusted accordingly.
+Safeguards are in place to ensure accurate processing, such as validating that the required files exist and that the ROIs are not empty. The .csv file is converted into an .xlsx file for easier viewing. The output includes the area of each ROI to confirm equal division, the number of structures within each ROI, and whether an ROI is empty.
 
-Additional functions in the scripts include proper labeling, differentiation between samples, and safeguards to ensure accurate data processing.
+Additional functions of the script include proper labeling and sample differentiation to ensure accurate data processing.
 
-The final output consists of two data sets, each divided into two subsets: WT and KO. Each subset includes three replicates, with three data categories per replicate (free, cluster, and total).
+The final output consists of the following files:
+
+A .xlsx file containing the selected columns of interest, including structure number, area, and x,y coordinates.
+A processed .xlsx file detailing the positions of structures within the grid and the area of each ROI.
+A counts .xlsx file indicating the number of structures in each ROI and whether any ROIs are empty.
+
+
+
+
