@@ -1,4 +1,4 @@
-# RYR - IP3 Structure Count Batch Processing 5x5 ROIs
+# RYR - IP3 Structure Count Batch Processing 
 
 This script is designed to process data exported from the AIVIA software (DRVISION Technologies), which is used to count protein structures within 2D images.
 
